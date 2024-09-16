@@ -7,6 +7,7 @@ use Core\Bootstrap;
 use App\Config;
 use Core\Router;
 
+session_start();
 $config = new Config();
 $app = Bootstrap::create($config);
 
