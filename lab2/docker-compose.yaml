@@ -1,0 +1,26 @@
+version: "3.3"
+
+services:
+  nginx:
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: deploy/docker/dev/nginx.Dockerfile
+    ports:
+      - "80:80"
+    environment:
+      - NGINX_HOST=local.work.ru
+      - NGINX_PORT=80
+    links:
+      - php
+    volumes:
+      - ./www:/var/www
+      - ./volumes/nginx-logs:/var/log/nginx
+
+  php:
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: deploy/docker/dev/php.Dockerfile
+    volumes:
+      - ./www:/var/www
