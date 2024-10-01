@@ -22,6 +22,6 @@
     </li>
     <hr>
     <li>
-        <a href="/searchByRubricDateContainingYear">Поиск статей по рубрике, дате и содержащих год</a>
+        <a href="/searchByRubricAndYear">Поиск статей по рубрике, дате и содержащих год</a>
     </li>
 </ul>

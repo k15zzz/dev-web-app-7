@@ -23,7 +23,11 @@ class ArticleController extends Controller
             return View::render('search-by-rubric-and-date', ['articles' => $articles], 'default');
         }
 
-        usort($articles, fn($a, $b) => strcmp($a['title'], $b['title']));
+        $forbidden = '\/:*?"<>|+%!@«»';
+        usort($articles, fn($a, $b) => strcmp(
+            preg_replace("/[${forbidden}]/", '', $a['title']),
+            preg_replace("/[${forbidden}]/", '', $b['title']),
+        ));
 
         return View::render('search-by-rubric-and-date', ['articles' => $articles], 'default');
     }
