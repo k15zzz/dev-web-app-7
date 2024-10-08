@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Middleware\AuthMiddleware;
 use App\Http\Middleware\NotAuthMiddleware;
-use App\Http\Request\AuthRequest;
+use App\Http\Request\CalculateFreeRequest;
 use App\Repositories\UserRepository;
 use Core\Base\Layers\Controller;
 use Core\Exceptions\ViewNotFoundException;
@@ -15,7 +15,7 @@ class AuthController extends Controller
     /**
      * @throws ViewNotFoundException
      */
-    public function auth(AuthRequest $request, UserRepository $repository, NotAuthMiddleware $middleware): string
+    public function auth(CalculateFreeRequest $request, UserRepository $repository, NotAuthMiddleware $middleware): string
     {
         if ($repository->check($request->username, $request->dbname)) {
             $repository->auth($request->username);
